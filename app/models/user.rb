@@ -5,5 +5,4 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
-  attr_accessor :username
 end
