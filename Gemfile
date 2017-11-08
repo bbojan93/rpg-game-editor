@@ -15,6 +15,12 @@ gem 'bootstrap'
 
 gem 'jquery-rails'
 
+gem 'carrierwave'
+
+gem 'mini_magick'
+
+gem 'fog'
+
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
