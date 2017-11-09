@@ -1,11 +1,25 @@
+<% if user_signed_in? %>
 <div class="jumbotron">
-  <h1 class="display-3">Welcome to RPG Game Editor</h1>
-  <p class="lead">Sign up to start creating your first character</p>
+  <h1 class="display-3">Hi, <span class="user"><%= current_user.username %></span></h1>
+  <p class="lead">What do you want to do?</p>
   <hr class="my-4">
-  <p>Already have account?
-      <%= link_to 'Log in', user_session_path %>
+  <p>View your existing 
+      <%= link_to 'Characters', characters_path %>
   </p>
   <p class="lead">
-    <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-primary btn-lg" %>
+    <%= link_to 'Create New Character', new_character_path, class: "btn btn-primary btn-lg" %>
   </p>
 </div>
+<% else %>
+  <div class="jumbotron">
+    <h1 class="display-3">Welcome to RPG Game Editor</h1>
+    <p class="lead">Sign up to start creating your first character</p>
+    <hr class="my-4">
+    <p>Already have account?
+        <%= link_to 'Log in', user_session_path %>
+    </p>
+    <p class="lead">
+      <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-primary btn-lg" %>
+    </p>
+  </div>
+<% end %>

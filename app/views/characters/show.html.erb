@@ -1,0 +1,10 @@
+<div class="card" style="width: 20rem;">
+  <%= image_tag(@character.avatar.url, height: "300") if @character.avatar? %>
+  <div class="card-body">
+    <h4 class="card-title"><%= @character.user.username %>'s <%= @character.name %></h4>
+
+    <%= link_to 'Attributes', character_path(@character), class: "btn btn-primary" %>
+    <%= link_to 'Edit', edit_character_path(@character), class: "btn btn-primary" %>
+    <%= link_to 'Delete', character_path(@character), method: :delete, data: {confirm: "Are you sure you want to delete this character?"}, class: "btn btn-primary" %>
+  </div>
+</div>

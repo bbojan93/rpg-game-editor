@@ -1,8 +1,10 @@
 class CharactersController < ApplicationController
   before_action :set_character, only: [:edit, :update, :show, :destroy]
+  before_action :authenticate_user!
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
-    @characters = Character.all
+    @characters = Character.where(user_id: current_user.id).all
   end
 
   def new
@@ -49,5 +51,12 @@ class CharactersController < ApplicationController
 
   def set_character
     @character = Character.find(params[:id])
+  end
+
+  def require_same_user
+    if @character.user != current_user
+      flash[:notice] = "You can only edit your own characters"
+      redirect_to characters_path
+    end
   end
 end
