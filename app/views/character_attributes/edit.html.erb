@@ -1,0 +1,54 @@
+<h1>Edit Attribute</h1>
+
+<% if @character_attribute.errors.any? %>
+  <h2>The following errors prevented the character from getting updated</h2>
+    <div class="danger alert-danger" role="alert">
+      <ul>
+        <% @character_attribute.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for(@character_attribute, :html => {multipart: true, class: "form-horizontal", role: "form"}) do |f| %>
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label :icon %>
+      </div>
+      <div class="col-sm-10">
+        <%= f.file_field :icon, accept: 'image/jpeg, image/gif, image/png' %>
+      </div>
+    </div>
+      <div class="form-group">
+        <div class="control-label col-sm-2">
+          <%= f.label :attribute_name %>
+        </div>
+        <div class="col-sm-10">
+          <%= f.text_field :attribute_name, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="control-label col-sm-2">
+          <%= f.label :attribute_value %>
+        </div>
+        <div class="col-sm-10">
+          <%= f.text_field :attribute_value, placeholder: "1-100", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.hidden_field :character_id, value: @character.id, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <%= f.submit class: 'btn btn-primary btn-lg'%>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>

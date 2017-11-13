@@ -1,0 +1,13 @@
+<% @character_attributes.each do |attribute| %>
+<div class="card" style="width: 20rem;">
+  <%= image_tag(attribute.icon.url, size: "30x30") if attribute.icon? %>
+  <div class="card-body">
+    <h4 class="card-title"><%= attribute.attribute_name %></h4>
+    <p> <%= attribute.attribute_value %> </p>
+    <%= link_to 'View', character_attribute_path(attribute), class: "btn btn-primary" %>
+    <%= link_to 'Edit', edit_character_attribute_path(attribute), class: "btn btn-primary" %>
+    <%= link_to 'Delete', character_attribute_path(attribute), method: :delete, data: {confirm: "Are you sure you want to delete this attribute?"}, class: "btn btn-primary" %>
+  </div>
+
+</div>
+<% end %>

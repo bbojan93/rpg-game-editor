@@ -1,5 +1,6 @@
 class Character < ApplicationRecord
   belongs_to :user
+  has_many :character_attributes, dependent: :destroy
   mount_uploader :avatar, PictureUploader
 
   enum name: {
@@ -12,5 +13,5 @@ class Character < ApplicationRecord
 
   validates :name, inclusion: names.keys, presence: true
   validates :avatar, presence: true
-  
+
 end
