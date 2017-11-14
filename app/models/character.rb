@@ -11,7 +11,7 @@ class Character < ApplicationRecord
     "Guardian" => 4
   }
 
-  validates :name, inclusion: names.keys, presence: true
+  validates :name, inclusion: names.keys, presence: true, uniqueness: { scope: :user_id }
   validates :avatar, presence: true
 
 end
