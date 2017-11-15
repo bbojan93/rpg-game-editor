@@ -16,7 +16,7 @@ class CharacterAttributesController < ApplicationController
       flash[:notice] = "You added a new character attribute"
       redirect_to character_path(@character_attribute.character_id)
     else
-      render 'new'
+      redirect_to character_path(@character_attribute.character_id)
     end
   end
 
@@ -29,7 +29,7 @@ class CharacterAttributesController < ApplicationController
       flash[:notice] = "Character attribute updated"
       redirect_to character_path(@character_attribute.character_id)
     else
-      render 'edit'
+      redirect_to character_path(@character_attribute.character_id)
     end
   end
 

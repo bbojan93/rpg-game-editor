@@ -1,10 +1,17 @@
-
-
-
+<% if character_attribute.errors.any? %>
+  <h2>The following errors prevented the character from getting created</h2>
+    <div class="danger alert-danger" role="alert">
+      <ul>
+        <% character_attribute.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
 
   <div class="col-md">
     <h2>Add new Attribute</h2>
-    <%= form_for(@character.character_attributes.new, :html => {multipart: true, class: "form-horizontal", role: "form"}) do |f| %>
+    <%= form_for(character_attribute, :html => {multipart: true, class: "form-horizontal", role: "form"}) do |f| %>
     <div class="form-group">
       <div class="control-label col-sm-2">
         <%= f.label :icon %>

@@ -5,7 +5,7 @@
       <%= image_tag(@character.avatar.url, height: "400") if @character.avatar? %>
       <div class="card-body">
         <h4 class="card-title"><%= @character.user.username %>'s <%= @character.name %></h4>
-        <div>
+        <div id="attributes">
           <% if @character_attributes.present? %>
             <% @character_attributes.each do |attribute| %>
               <%= render 'character_attributes/attribute', character_attribute: attribute %>
@@ -20,6 +20,6 @@
     </div>
   </div>
   <div class="col-md attribute-form">
-    <%= render 'character_attributes/new' %>
+    <%= render 'character_attributes/new', character_attribute: @character.character_attributes.new %>
   </div>
 </div>
