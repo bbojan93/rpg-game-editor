@@ -12,11 +12,13 @@ class CharacterAttributesController < ApplicationController
 
   def create
     @character_attribute = CharacterAttribute.new(attribute_params)
-    if @character_attribute.save
-      flash[:notice] = "You added a new character attribute"
-      redirect_to character_path(@character_attribute.character_id)
-    else
-      redirect_to character_path(@character_attribute.character_id)
+    respond_to do |format|
+      if @character_attribute.save
+        format.js
+        format.html { redirect_to character_path(@character_attribute.character_id)}
+      else
+        format.html {redirect_to character_path(@character_attribute.character_id)}
+      end
     end
   end
 
@@ -25,11 +27,13 @@ class CharacterAttributesController < ApplicationController
   end
 
   def update
-    if @character_attribute.update(attribute_params)
-      flash[:notice] = "Character attribute updated"
-      redirect_to character_path(@character_attribute.character_id)
-    else
-      redirect_to character_path(@character_attribute.character_id)
+    respond_to do |format|
+      if @character_attribute.update(attribute_params)
+        format.js
+        format.html { redirect_to character_path(@character_attribute.character_id)}
+      else
+        format.html {redirect_to character_path(@character_attribute.character_id)}
+      end
     end
   end
 
@@ -37,9 +41,13 @@ class CharacterAttributesController < ApplicationController
   end
 
   def destroy
-    @character_attribute.destroy
-    flash[:notice] = "Attribute deleted"
-    redirect_to character_path(@character_attribute.character_id)
+
+    respond_to do |format|
+      if @character_attribute.destroy
+        format.js
+        format.html { redirect_to character_path(@character_attribute.character_id) }
+      end
+    end
   end
 
   private
