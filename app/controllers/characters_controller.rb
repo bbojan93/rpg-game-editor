@@ -4,7 +4,7 @@ class CharactersController < ApplicationController
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
-    @characters = Character.where(user_id: current_user.id).all
+    @characters = Character.where(user_id: current_user.id).order(:created_at).page(params[:page])
   end
 
   def new

@@ -14,4 +14,5 @@ class Character < ApplicationRecord
   validates :name, inclusion: names.keys, presence: true, uniqueness: { scope: :user_id }
   validates :avatar, presence: true
 
+  paginates_per 1
 end

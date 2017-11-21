@@ -9,8 +9,8 @@
           <%= render @character_attributes %>
         </div>
 
-        <%= link_to 'Edit', edit_character_path(@character), class: "btn btn-primary" %>
-        <%= link_to 'Delete', character_path(@character), method: :delete, data: {confirm: "Are you sure you want to delete this character?"}, class: "btn btn-primary" %>
+        <%= link_to 'Edit Character', edit_character_path(@character), class: "btn btn-primary" %>
+        <%= link_to 'Delete Character', character_path(@character), method: :delete, data: {confirm: "Are you sure you want to delete this character?"}, class: "btn btn-primary" %>
       </div>
     </div>
   </div>
