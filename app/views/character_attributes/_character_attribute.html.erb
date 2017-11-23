@@ -3,36 +3,61 @@
   <%= character_attribute.attribute_name %>:
   <%= character_attribute.attribute_value %>
 
-  <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Edit</button>
+  <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#updateattribute_<%= character_attribute.id %>">Edit</button>
+  <%= link_to 'Delete', character_attribute_path(character_attribute), remote: true, method: :delete, data: {confirm: "Are you sure"}, class: "btn btn-sm btn-primary" %>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
+  <%= form_for(character_attribute, :method => :patch, remote: true, :html => {multipart: true, class: "form-horizontal", role: "form"}) do |f| %>
+    <div class="modal fade" id="updateattribute_<%= character_attribute.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Attribute</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
             <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Recipient:</label>
-              <input type="text" class="form-control" id="recipient-name">
+              <div class="control-label col-sm-2">
+                <%= f.label :icon %>
+              </div>
+              <div class="col-sm-10">
+                <%= f.file_field :icon, accept: 'image/jpeg, image/gif, image/png', class: "clear" %>
+              </div>
             </div>
+              <div class="form-group">
+                <div class="control-label col-sm-2">
+                  <%= f.label :attribute_name %>
+                </div>
+                <div class="col-sm-10">
+                  <%= f.text_field :attribute_name, class: "form-control clear" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="control-label col-sm-2">
+                  <%= f.label :attribute_value %>
+                </div>
+                <div class="col-sm-10">
+                  <%= f.number_field :attribute_value, placeholder: "1-100", class: "form-control clear" %>
+                </div>
+              </div>
+
+              <div class="col-sm-10">
+                <%= f.hidden_field :character_id, value: character_attribute.character_id %>
+              </div>
+
+          </div>
+          <div class="modal-footer">
             <div class="form-group">
-              <label for="message-text" class="col-form-label">Message:</label>
-              <textarea class="form-control" id="message-text"></textarea>
+              <div class="col-sm-10">
+                <%= f.submit "Update", class: 'btn btn-primary btn-md'%>
+              </div>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Send message</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
-  <%= link_to 'Delete', character_attribute_path(character_attribute), remote: true, method: :delete, data: {confirm: "Are you sure"}, class: "btn btn-sm btn-primary" %>
+
 </div>
